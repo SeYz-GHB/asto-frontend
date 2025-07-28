@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, useLocation, useMatch, matchPath } from "react-router-dom";
-import Header from "../components/Header/Header";
+import Header from '../components/header/Header'
 import MenuIcon from "../components/MenuIcon";
 import LogoRun from "../components/logoSection/logoRun";
 
