@@ -1,13 +1,14 @@
 // frontend/Store/authStore.js
+import axios from 'axios';
 import { create } from 'zustand';
-import api from "../api";
 
-const API_URL = "/auth"; // ✅ Because api.js already has /api
+
+const API_URL = "/api/auth"; // ✅ Because axios.js already has /api
 
 
 
 // Configure axios to always send cookies
-api.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
 export const useAuthStore = create((set, get) => ({
   user: null,
@@ -19,7 +20,7 @@ export const useAuthStore = create((set, get) => ({
   signup: async (email, password, name) => {
     set({ isLoading: true, error: null });
     try {
-      const res = await api.post(`${API_URL}/signup`, {
+      const res = await axios.post(`${API_URL}/signup`, {
         email, password, name
       });
 
@@ -42,7 +43,7 @@ export const useAuthStore = create((set, get) => ({
     await new Promise(resolve => setTimeout(resolve,2000))
     set({ isLoading: true, error: null });
     try {
-      const res = await api.post(`${API_URL}/login`, {
+      const res = await axios.post(`${API_URL}/login`, {
         email, password
       });
       
@@ -65,7 +66,7 @@ export const useAuthStore = create((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       await new Promise(resolve => setTimeout(resolve,2000))
-      await api.post(`${API_URL}/logout`);
+      await axios.post(`${API_URL}/logout`);
       set({
         user: null,
         isAuthenticated: false,
@@ -82,7 +83,7 @@ export const useAuthStore = create((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const { user } = get(); // get current user to fetch email
-      const res = await api.post(`${API_URL}/verify-email`, {
+      const res = await axios.post(`${API_URL}/verify-email`, {
         email: user.email,
         code
       });
@@ -106,7 +107,7 @@ export const useAuthStore = create((set, get) => ({
   checkAuth: async () => {
     set({ isCheckingAuth: true, error: null });
     try {
-      const res = await api.get(`${API_URL}/check-auth`);
+      const res = await axios.get(`${API_URL}/check-auth`);
       set({
         user: res.data.user,
         isAuthenticated: true,
@@ -124,7 +125,7 @@ export const useAuthStore = create((set, get) => ({
   forgotPassword: async(email) => {
     set({isLoading : true, error : null});
     try{
-      const res = await api.post(`${API_URL}/forgot-password`,{email,});
+      const res = await axios.post(`${API_URL}/forgot-password`,{email,});
       set({
         
       })
@@ -138,7 +139,7 @@ export const useAuthStore = create((set, get) => ({
   resetPassword: async (token, password) => {
     set({ isLoading: true, error: null });
     try {
-      const res = await api.post(`${API_URL}/reset-password/${token}`, { password });
+      const res = await axios.post(`${API_URL}/reset-password/${token}`, { password });
       set({ 
         isLoading: false,
         error: null 

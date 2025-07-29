@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import Recipt from "./Recipt";
+import axios from 'axios';
 
 const QRPayment = () => {
   const { orderId } = useParams();

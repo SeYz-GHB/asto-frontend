@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from 'axios'; // or correct path
+
 import toast from "react-hot-toast";
 
 export default function ViewAllUsers() {

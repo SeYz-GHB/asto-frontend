@@ -89,7 +89,7 @@ const RoleProtectedRoute = ({ children, allowedRoles }) => {
     return <Navigate to="/" replace />;
   }
 
-  console.log("✅ Role authorized → rendering child");
+  console.log(" Role authorized → rendering child");
   return children;
 };
 
@@ -176,11 +176,11 @@ function App() {
   const { isCheckingAuth, checkAuth, isAuthenticated, user } = useAuthStore();
 
   useEffect(() => {
-    console.log("🔄 Running checkAuth()...");
+    console.log("Running checkAuth()...");
     checkAuth();
   }, []);
 
-  console.log("📌 App Render State →", {
+  console.log(" App Render State →", {
     isCheckingAuth,
     isAuthenticated,
     user,

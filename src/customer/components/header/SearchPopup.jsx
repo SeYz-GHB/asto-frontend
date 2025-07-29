@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from 'axios';
+
+
 
 const SearchPopup = ({ toggleSearchPopup, searchPopup }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,7 +19,7 @@ const SearchPopup = ({ toggleSearchPopup, searchPopup }) => {
   };
 
   useEffect(() => {
-    axios.get("/api/products").then((res) => {
+    axios.get("/products").then((res) => {
       setAllProducts(res.data.products || []);
     });
   }, []);
